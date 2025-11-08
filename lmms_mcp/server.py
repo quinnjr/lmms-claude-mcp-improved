@@ -29,7 +29,7 @@ class MCPServer:
                  lmms_host: str = DEFAULT_LMMS_HOST, lmms_port: int = DEFAULT_LMMS_PORT):
         """
         Initialize the MCP server.
-        
+
         Args:
             server_host: The hostname to run the MCP server on
             server_port: The port to run the MCP server on
@@ -45,7 +45,7 @@ class MCPServer:
             port=server_port
         )
         self._register_tools()
-        
+
     def _register_tools(self):
         """Register all available tools for the MCP protocol."""
         self.server.add_tool(self.get_session_info, name="get_session_info",
@@ -75,14 +75,24 @@ class MCPServer:
         self.server.add_tool(self.get_instruments_list, name="get_instruments_list",
                             description="Get a list of available instruments")
 
-    async def start(self):
-        """Start the MCP server."""
+    async def start(self, use_stdio: bool = False):
+        """
+        Start the MCP server.
+        
+        Args:
+            use_stdio: If True, use stdio transport (for Claude Desktop).
+                      If False, use HTTP transport (for testing).
+        """
         # First start the LMMS interface's OSC server
         transport = await self.lmms_interface.start_server()
         
         # Then start the MCP server
-        logger.info(f"Starting MCP server on {self.server_host}:{self.server_port}")
-        await self.server.run_streamable_http_async()
+        if use_stdio:
+            logger.info("Starting MCP server with stdio transport")
+            await self.server.run_stdio_async()
+        else:
+            logger.info(f"Starting MCP server on {self.server_host}:{self.server_port}")
+            await self.server.run_streamable_http_async()
 
     # Function implementations
     async def get_session_info(self) -> Dict[str, Any]:
