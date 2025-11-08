@@ -27,7 +27,7 @@ setup(
     install_requires=[
         "python-osc>=1.8.0",
         "websockets>=10.0",
-        "model-context-protocol>=0.1.0",
+        "mcp>=0.1.0",
     ],
     entry_points={
         "console_scripts": [

@@ -81,26 +81,26 @@ If you get a help message, the installation was successful.
 1. Go to Claude > Settings > Developer > Edit Config > claude_desktop_config.json to include the following:
 
 ```json
-{ 
-  "mcpServers": { 
-    "LMMSMCP": { 
-      "command": "lmms-mcp", 
-      "args": [] 
-    } 
-  } 
+{
+  "mcpServers": {
+    "LMMSMCP": {
+      "command": "lmms-mcp",
+      "args": []
+    }
+  }
 }
 ```
 
 If using uvx without installation:
 
 ```json
-{ 
-  "mcpServers": { 
-    "LMMSMCP": { 
-      "command": "uvx", 
-      "args": [ "https://github.com/akidry/lmms-claude-mcp-improved.git", "lmms-mcp" ] 
-    } 
-  } 
+{
+  "mcpServers": {
+    "LMMSMCP": {
+      "command": "uvx",
+      "args": [ "https://github.com/akidry/lmms-claude-mcp-improved.git", "lmms-mcp" ]
+    }
+  }
 }
 ```
 
@@ -148,10 +148,10 @@ No solution found when resolving tool dependencies:
 Because lmms-mcp was not found in the package registry...
 ```
 
-**Solution**: 
+**Solution**:
 - Make sure you've installed the package using one of the methods above
 - Try installing directly from GitHub with: `uv pip install git+https://github.com/akidry/lmms-claude-mcp-improved.git`
-- Ensure you have the required dependencies: `python-osc>=1.8.0`, `websockets>=10.0`, and `model-context-protocol>=0.1.0`
+- Ensure you have the required dependencies: `python-osc>=1.8.0`, `websockets>=10.0`, and `mcp>=0.1.0`
 
 #### Connection Issues
 

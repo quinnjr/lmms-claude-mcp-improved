@@ -5,4 +5,6 @@ include pyproject.toml
 include setup.py
 include MANIFEST.in
 include install.sh
+include pytest.ini
 recursive-include lmms_mcp *.py
+recursive-include tests *.py
